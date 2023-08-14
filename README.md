@@ -1,5 +1,7 @@
 # URL_Health_Check
-URL批量存活检测工具
+## URL批量存活检测工具
+
+将收集的资产放入urls.txt
 
 用法（必须要带-f）：
 python3 URL_Health_Check.py -f urls.txt
