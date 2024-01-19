@@ -1,17 +1,15 @@
 # -*-coding: utf-8 -*-
 
-import requests, re
+import requests
+import re
 import urllib3
 import logging
-
-logging.captureWarnings(True)
 from concurrent.futures import ThreadPoolExecutor
 import argparse
 import time
-# import ssl
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
-# ssl._create_default_https_context = ssl._create_unverified_context
+logging.captureWarnings(True)
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 
@@ -33,6 +31,10 @@ def getTitle(url):
     header = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36',
     }
+
+    # 判断URL是否有协议，如果没有则添加
+    if not url.startswith("http://") and not url.startswith("https://"):
+        url = "http://" + url  # 你也可以使用 "https://" 协议
 
     try:
         res = requests.get(url, headers=header, verify=False, allow_redirects=True, timeout=10)
